@@ -1,28 +1,41 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:AlternateRowColorSample" x:Class="AlternateRowColorSample.MainPage">
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="AlternateRowColorSample.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:AlternateRowColorSample">
     <ContentPage.Resources>
-        <ResourceDictionary>
-            <DataTemplate x:Key="evenTemplate">
-                <ViewCell>
-                    <Grid BackgroundColor="White">
-                        <Label Text="{Binding .}" HorizontalOptions="Center" VerticalOptions="Center" />
-                    </Grid>
-                </ViewCell>
-            </DataTemplate>
-            <DataTemplate x:Key="unevenTemplate">
-                <ViewCell>
-                    <Grid BackgroundColor="LightGray">
-                        <Label Text="{Binding .}" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" />
-                    </Grid>
-                </ViewCell>
-            </DataTemplate>
-            <local:AlternateColorDataTemplateSelector x:Key="alternateColorDataTemplateSelector"
-                EvenTemplate="{StaticResource evenTemplate}"
-                UnevenTemplate="{StaticResource unevenTemplate}" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
-    
-    <ListView ItemTemplate="{StaticResource alternateColorDataTemplateSelector}" ItemsSource="{Binding Items}">
 
-    </ListView>
+        <DataTemplate x:Key="evenTemplate">
+            <ViewCell>
+                <Grid Style="{DynamicResource RowStyle}">
+                    <Label
+                        HorizontalOptions="Center"
+                        Style="{DynamicResource TextRowStyle}"
+                        Text="{Binding .}"
+                        VerticalOptions="Center" />
+                </Grid>
+            </ViewCell>
+        </DataTemplate>
+        <DataTemplate x:Key="unevenTemplate">
+            <ViewCell>
+                <Grid Style="{DynamicResource AlternativeRowStyle}">
+                    <Label
+                        HorizontalOptions="Center"
+                        Style="{DynamicResource AlternativeTextRowStyle}"
+                        Text="{Binding .}"
+                        VerticalOptions="Center" />
+                </Grid>
+            </ViewCell>
+        </DataTemplate>
+        <local:AlternateColorDataTemplateSelector
+            x:Key="alternateColorDataTemplateSelector"
+            EvenTemplate="{StaticResource evenTemplate}"
+            UnevenTemplate="{StaticResource unevenTemplate}" />
+    </ContentPage.Resources>
+
+    <StackLayout>
+        <Switch IsToggled="True" Toggled="Switch_OnToggled" />
+        <ListView ItemTemplate="{DynamicResource alternateColorDataTemplateSelector}" ItemsSource="{Binding Items}" />
+    </StackLayout>
 </ContentPage>

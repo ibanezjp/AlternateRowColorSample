@@ -1,0 +1,24 @@
+﻿<ResourceDictionary
+    x:Class="AlternateRowColorSample.DarkTheme"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Color x:Key="RowColor">Black</Color>
+    <Color x:Key="AlternativeRowColor">DimGray</Color>
+
+    <Style x:Key="AlternativeRowStyle" TargetType="Grid">
+        <Setter Property="BackgroundColor" Value="{StaticResource AlternativeRowColor}" />
+    </Style>
+
+    <Style x:Key="RowStyle" TargetType="Grid">
+        <Setter Property="BackgroundColor" Value="{StaticResource RowColor}" />
+    </Style>
+
+    <Style x:Key="TextRowStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource AlternativeRowColor}" />
+    </Style>
+
+    <Style x:Key="AlternativeTextRowStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource RowColor}" />
+    </Style>
+
+</ResourceDictionary>
